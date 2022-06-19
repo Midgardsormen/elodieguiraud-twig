@@ -1,0 +1,13 @@
+<header class="header site-header" >
+    {% block header %}
+        <div class="site-header__inner-layout base-container base-container--limited">
+            <h1 class="hdr-logo" role="banner">
+                <a class="hdr-logo-link" href="{{site.url}}" rel="home">{{site.name}}</a>
+            </h1>
+        </div>
+            
+        {% include "header/main-navigation.twig" %}
+
+
+    {% endblock %}
+</header>

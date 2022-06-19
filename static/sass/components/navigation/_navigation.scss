@@ -1,0 +1,132 @@
+.base-main-navigation{
+    background-color: $base-primary;
+    &__open-btn{
+        position: relative;
+        @include media(size-l) {
+            display: none;
+        }        
+        .menu-icon-open{
+            display: block;
+        }
+        .menu-icon-close{
+            display: none;
+        }
+        &.active{
+            position: fixed;
+            top: $bu-100;
+            right: $bu-100;
+            z-index: 4;
+            .customize-support &{
+                margin-top: 40px;
+            }
+            .menu-icon-open{
+                display: none;
+            }
+            .menu-icon-close{
+                display: block;
+            } 
+        }
+    }
+    &__menu{
+        margin: 0;
+        box-sizing: border-box;
+        display: block;
+        position: fixed;
+        right: 0;
+        transform: translateX(100%);
+        width: 100%;
+        max-width: 300px;
+        padding: $bu-500 $bu-100 $bu-150;
+        background-color: $color__background-body;
+        top: 0;
+        height: calc(100% - 40px);
+        z-index: 3;
+        transition: visibility .3s 0s,-webkit-transform .3s cubic-bezier(.77,.2,.05,1);
+        overflow: hidden auto;
+        @include media(size-l) {
+            padding: 0;
+            position: relative;
+            right: auto;
+            height: auto;
+            top: auto;
+            transition: none;
+            transform: none;
+            max-width: none;
+            background-color: transparent;
+            &--horizontal {
+                & > ul {
+                    display: flex;
+                    margin-bottom: 0;
+                }
+            }
+        }
+        .customize-support &{
+            top: 40px;
+        }
+        &.active{
+            transform: translateX(0);
+        }
+        & > ul {
+            padding: 0;
+        }
+    }
+    &__item{
+        display: block;
+        position: relative;
+        border-bottom: 1px solid $base-grey;
+        box-sizing: border-box;
+        margin-bottom: $bu-025;
+        @include media(size-l) {
+            border-bottom: none;
+        }
+        &:last-child{
+            border-bottom: none;
+        }
+        a{
+            display: block;
+            line-height: 1;
+            padding: $bu-050 0;
+            text-decoration: none;
+            @include media(size-l) {
+                color: $base-white;
+            }
+        }
+        &--has-children{
+            a{
+               padding-right: $bu-150;   
+            }
+          
+        }
+        &.active{
+           & > a{
+                font-weight: bold;
+
+            }
+        }
+        &-toggle-btn{
+            width: $bu-200;
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: $bu-025;
+            transition: visibility .3s 0s,-webkit-transform .3s cubic-bezier(.77,.2,.05,1);
+            &.active{
+                transform: rotate(180deg);
+            }
+            span{
+                font-size: $bu-100;
+                width: $bu-100;
+                height: $bu-100;
+            }
+        }
+    }
+    &__sub-menu{
+        padding-left: $bu-050;
+        transition: max-height .3s 0s ease-in-out;
+        max-height: 0;
+        overflow: hidden;
+        &.active{
+            max-height: 1000px;
+        }
+    }
+}

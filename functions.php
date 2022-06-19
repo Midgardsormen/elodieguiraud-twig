@@ -8,6 +8,8 @@
  * @since   Timber 0.1
  */
 
+
+
 /**
  * If you are installing Timber as a Composer dependency in your theme, you'll need this block
  * to load your dependencies and initialize Timber. If you are using Timber via the WordPress.org
@@ -84,7 +86,8 @@ class StarterSite extends Timber\Site {
 		$context['foo']   = 'bar';
 		$context['stuff'] = 'I am a value set in your functions.php file';
 		$context['notes'] = 'These values are available everytime you call Timber::context();';
-		$context['menu']  = new Timber\Menu();
+		$context['primary_menu']  = new Timber\Menu('primary');
+		$context['top_menu'] = new Timber\Menu('top-menu');
 		$context['site']  = $this;
 		return $context;
 	}
@@ -165,3 +168,26 @@ class StarterSite extends Timber\Site {
 }
 
 new StarterSite();
+	
+
+// This theme uses wp_nav_menu() in one location.
+	register_nav_menus(
+		array(
+			'primary' => esc_html__( 'Primary', 'custom-base-theme' ),
+			'top-menu' => esc_html__( 'Top menu', 'custom-base-theme' ),
+		)
+	);
+
+
+ /**
+ * Enqueue scripts and styles.
+ */
+function custom_base_theme_scripts() {
+	wp_enqueue_style( 'custom-base-theme-style', get_stylesheet_uri(), array(), false );
+	wp_style_add_data( 'custom-base-theme-style', 'rtl', 'replace' );
+
+	wp_enqueue_script( 'custom-base-theme-navigation', get_template_directory_uri() . '/static/js/navigation.js', array(), false, true );
+	wp_enqueue_script( 'custom-base-theme-global', get_template_directory_uri() . '/static/js/global.js', array(), false, true );
+
+}
+add_action( 'wp_enqueue_scripts', 'custom_base_theme_scripts' );

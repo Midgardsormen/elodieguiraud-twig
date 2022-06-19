@@ -1,0 +1,31 @@
+.grid-container {
+    column-gap: var(--global--spacing-unit);
+    display: grid;
+    grid-auto-rows: minmax(auto,auto);
+    grid-template-columns: [grid-col-1-start] 1fr [grid-col-1-end grid-col-2-start] 1fr [grid-col-2-end grid-col-3-start] 1fr [grid-col-3-end grid-col-4-start] 1fr [grid-col-4-end grid-col-5-start] 1fr [grid-col-5-end grid-col-6-start] 1fr [grid-col-6-end grid-col-7-start] 1fr [grid-col-7-end grid-col-8-start] 1fr [grid-col-8-end grid-col-9-start] 1fr [grid-col-9-end grid-col-10-start] 1fr [grid-col-10-end grid-col-11-start] 1fr [grid-col-11-end grid-col-12-start] 1fr [grid-col-12-end];
+}
+
+@for $i from 1 through 12 {
+
+    .grid-col-#{$i} {
+        grid-column-end: span #{$i}
+    }
+    $sizes: xs, s, m, l, xl, xxl;
+    @each $size in $sizes {
+        @include media(size-#{$size}) {
+            .grid-col-#{$size}-#{$i} {
+                grid-column-end: span #{$i}
+            }
+        }
+    }
+    .grid-col-start-#{$i} {
+        grid-column-start: grid-col-#{$i}-start
+    }
+    @each $size in $sizes {
+        @include media(size-#{$size}) {
+            .grid-col-start-#{$size}-#{$i} {
+                grid-column-end: span #{$i}
+            }
+        }
+    }
+}
