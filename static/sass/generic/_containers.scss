@@ -1,0 +1,29 @@
+.base-container {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: $bu-100;
+    padding-right: $bu-100;
+    width: 100%;
+
+    $sizes: 
+        "xs" 100% $bu-100, 
+        "s" 100% $bu-150, 
+        "m" 100% $bu-200, 
+        "l" 64rem $bu-250, 
+        "xl" 80rem, 
+        "xxl" 100rem;
+        
+    @each $device, $size, $padding in $sizes {
+        @include media(size-#{$device}) {
+            padding-left: #{$padding};
+            padding-right: #{$padding};
+            &--limited{
+                max-width:#{$size};
+            }
+            
+        }
+    }
+}
+

@@ -1,0 +1,15 @@
+{% if item and items %}
+{% set level = level + 1  %}
+    <button   aria-label = "Ouvrir ou fermer le sous-menu {{ item.title }}" aria-expanded="false" aria-controls = "sub-menu-{{ item.id }}" class="js-active-menu base-main-navigation__item-toggle-btn" data-listtarget="sub-menu-{{ item.id }}">
+        <span class="dashicons dashicons-arrow-down-alt2">&nbsp;</span>
+    </button>  
+    <ul id="sub-menu-{{ item.id }}" class="base-main-navigation__sub-menu base-main-navigation__sub-menu--level-{{ level }} sub-menu-{{ item.id }}">
+        
+        {% for item in items %}
+            <li class="base-main-navigation__item base-main-navigation__sub-menu-item {% if item.children %}base-main-navigation__item--has-children{% endif %} cat-{{ item.id }} base-main-navigation__item--child-of-{{item.menu_item_parent}} {% if item.current and item.children %} base-main-navigation__item--current{% endif %}">
+                <a target="{{ item.target }}" href="{{ item.link }}">{{ item.title }}</a>
+                {% include "macros/main-navigation/include/menu.twig" with {'item': item, 'items': item.children, 'level': level} %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
