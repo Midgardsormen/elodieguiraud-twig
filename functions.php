@@ -83,11 +83,17 @@ class StarterSite extends Timber\Site {
 	 * @param string $context context['this'] Being the Twig's {{ this }}.
 	 */
 	public function add_to_context( $context ) {
+		$context = Timber::get_context();
+		$context['custom_logo_url'] = wp_get_attachment_image_url(get_theme_mod('custom_logo'));
+		if ( is_active_sidebar( 'custom-side-bar' ) ) {
+			$context['custom_side_bar'] = Timber::get_widgets( 'custom-side-bar' );
+		}
 		$context['foo']   = 'bar';
 		$context['stuff'] = 'I am a value set in your functions.php file';
 		$context['notes'] = 'These values are available everytime you call Timber::context();';
 		$context['primary_menu']  = new Timber\Menu('primary');
 		$context['top_menu'] = new Timber\Menu('top-menu');
+		$context['footer_menu'] = new Timber\Menu('footer-menu');
 		$context['site']  = $this;
 		return $context;
 	}
@@ -175,6 +181,7 @@ new StarterSite();
 		array(
 			'primary' => esc_html__( 'Primary', 'custom-base-theme' ),
 			'top-menu' => esc_html__( 'Top menu', 'custom-base-theme' ),
+			'footer-menu' => esc_html__( 'Footer menu', 'custom-base-theme' ),
 		)
 	);
 
@@ -188,6 +195,62 @@ function custom_base_theme_scripts() {
 
 	wp_enqueue_script( 'custom-base-theme-navigation', get_template_directory_uri() . '/static/js/navigation.js', array(), false, true );
 	wp_enqueue_script( 'custom-base-theme-global', get_template_directory_uri() . '/static/js/global.js', array(), false, true );
+	add_filter('script_loader_tag', 'add_type_attribute' , 10, 3);
+}
 
+function add_type_attribute($tag, $handle, $src) {
+    // if not your script, do nothing and return original $tag
+    if ( 'custom-base-theme-global' !== $handle ) {
+        return $tag;
+    }
+    // change the script tag by adding type="module" and return it.
+    $tag = '<script type="module" src="' . esc_url( $src ) . '"></script>';
+    return $tag;
 }
 add_action( 'wp_enqueue_scripts', 'custom_base_theme_scripts' );
+
+add_action( 'wp_enqueue_scripts', 'load_dashicons_front_end' );
+
+function load_dashicons_front_end() {
+	wp_enqueue_style( 'dashicons' );
+}
+add_theme_support('custom-logo');
+
+function my_custom_sidebar() {
+	register_sidebar(
+		array (
+			'name' => __( 'Social icon Area', 'your-theme-domain' ),
+			'id' => 'custom-side-bar',
+			'description' => __( 'This is the custom sidebar that you registered using the code snippet. You can change this text by editing this section in the code.', 'your-theme-domain' ),
+			'before_widget' => '<div class="social-icon-container">',
+			'after_widget' => "</div>",
+			'before_title' => '<h3 class="widget-title">',
+			'after_title' => '</h3>',
+		)
+	);
+}
+add_action( 'widgets_init', 'my_custom_sidebar' );
+
+
+
+add_action( 'wpcf7_init', 'wpcf7_add_form_tag_toggle' );
+function wpcf7_add_form_tag_toggle() {
+	// Add shortcode for the form [toggle]
+	wpcf7_add_form_tag( 
+		array( 'toggle', 'toggle*'),
+		'wpcf7_current_url_form_tag_toggle_handler',
+		array(
+			'name-attr' => true
+		)
+	);
+}
+// Parse the shortcode in the frontend
+function wpcf7_current_url_form_tag_toggle_handler( $tag ) {
+	$class = wpcf7_form_controls_class( $tag->type, 'wpcf7-wc_order' );
+	$value = (string) reset( $tag->values );
+	return '<div class="mdg-toggle">
+				<input type="checkbox" name="'.$tag['name'].'" id="'.$tag->get_id_option().'" class="mdg-toggle__input '.$tag->get_class_option( $class ).'" value="'.$value.'" />
+				<label class="mdg-toggle__label" for="'.$tag->get_id_option().'">
+					<span class="mdg-toggle__toggle">&nbsp;</span>'.$value.'</label>
+			</div>';
+}

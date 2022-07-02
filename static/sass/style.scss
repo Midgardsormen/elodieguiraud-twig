@@ -58,21 +58,18 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 --------------------------------------------------------------*/
 /*breakpoints
 --------------------------------------------- */
-@import "generic/breakpoints";
+@import "node_modules/wp-midgardsormen/scss/layout/generic/mdg-breakpoints";
 
-/*containers
---------------------------------------------- */
-@import "generic/containers";
 /*grid
 --------------------------------------------- */
-@import "generic/grid";
+@import "node_modules/wp-midgardsormen/scss/layout/generic/mdg-grid";
 /* Normalize
 --------------------------------------------- */
-@import "generic/normalize";
+@import "node_modules/wp-midgardsormen/scss/layout/generic/normalize";
 
 /* Box sizing
 --------------------------------------------- */
-@import "generic/box-sizing";
+@import "node_modules/wp-midgardsormen/scss/layout/generic/mdg-box-sizing";
 
 /*--------------------------------------------------------------
 # Base

@@ -1,0 +1,18 @@
+&__contact-infos{
+    color: var(--footer--color-text);
+    font-family: var(--footer--font-family);
+    font-weight: 300;
+    margin-bottom: $bu-150;
+    @include media(size-l) {
+        margin-bottom: 0;
+    }
+    &-item{
+        display: block;
+        margin-bottom: $bu-050;
+        &:last-child{
+            margin-bottom: 0;
+        }
+        font-size: $bu-100;
+        line-height: 1;
+    }
+}

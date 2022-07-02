@@ -1,4 +1,4 @@
-.base-overlay{
+.mdg-overlay{
     display: none;
     position: fixed;
     width: 100%;
@@ -7,7 +7,7 @@
     left: 0;
     right: 0;
     z-index: 2;
-    background-color: $base-overlay;
+    background-color: $mdg-overlay;
     cursor: pointer;
     &.active{
         display: block;

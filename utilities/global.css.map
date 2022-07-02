@@ -1,0 +1,9 @@
+{
+	"version": 3,
+	"file": "global.css",
+	"sources": [
+		"../static/sass/utilities/global.scss"
+	],
+	"names": [],
+	"mappings": "AAAA,AAAA,WAAW,CAAA;CACP,OAAO,EAAE,IAAI,CAAA,UAAU;CAC1B"
+}

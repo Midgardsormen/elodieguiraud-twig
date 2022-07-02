@@ -1,19 +1,46 @@
-$base-primary: #3b6e43;
+//custom
+$mdg-color-1: #5D4157;
+$mdg-color-2: #EBE3AA;
+$mdg-color-3: #838689;
+$mdg-color-4: #CAD7B2;
+$mdg-color-5: #A8CABA;
 
-$base-black: #000000;
-$base-white: #ffffff;
-$base-grey: #666666;
-$base-light-grey: #d3d3d3;
-$base-overlay: rgba($base-black, 0.7);
 
-$color__background-body: #fff;
+//general
+$mdg-black: #000000;
+$mdg-white: #ffffff;
+$mdg-grey: #666666;
+$mdg-light-grey: #d3d3d3;
+
+
+//forms, stickers, toaster
+$mdg-alert: #c96718;
+$mdg-bg-alert: #f8ce97;
+$mdg-error: #b61004;
+$mdg-bg-error: #f7a7a2;
+$mdg-success: #126b3a;
+$mdg-bg-success: #82d8a8;
+$mdg-infos: #39587c;
+$mdg-bg-infos: #86b3e6;
+$mdg-disabled: #4e4e4e;
+$mdg-bg-disabled: #d8d6d6;
+
+//components
+$mdg-overlay: rgba($mdg-black, 0.7);
+
+//accessibility
+$mdg-outline : #212121;
 $color__background-screen: #f1f1f1;
+$color__text-screen: #21759b;
+
+$color__background-body: $mdg-white;
+
 $color__background-hr: #ccc;
 $color__background-button: #e6e6e6;
 $color__background-pre: #eee;
 $color__background-ins: #fff9c0;
 
-$color__text-screen: #21759b;
+
 $color__text-input: #666;
 $color__text-input-focus: #111;
 $color__link: #4169e1; //royalblue

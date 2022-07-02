@@ -1,0 +1,39 @@
+.mdg-footer{
+    background-color: $mdg-light-grey;
+	padding-top: var(--global--spacing-vertical);
+	padding-bottom: var(--global--spacing-vertical);
+
+	&__container{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		text-align: center;
+		@include media(size-l) {
+			flex-direction: row;
+			align-items:flex-end;
+			justify-content: space-between;
+			gap: $bu-150;
+			text-align: left;
+		}
+	}
+	@import "site-infos";
+	@import "contact-infos";
+
+	&__third-column {
+		flex: 1;
+		margin-bottom: $bu-150;
+		@include media(size-l) {
+			text-align: right;
+			margin-bottom: 0;
+		}
+		@import "../navigation/footer-navigation";
+	}
+	&__social-menu {
+		display: flex;
+		justify-content: center;
+		margin-bottom: $bu-150;
+		@include media(size-l) {
+			justify-content: flex-end;
+		}
+	} 
+}

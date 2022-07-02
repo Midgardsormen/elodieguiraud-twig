@@ -1,3 +1,9 @@
-.base-hidden{
+.mdg-hidden{
     display: none!important;
+}
+.mdg-container {
+    @include mdg-container(false);
+    &--limited{
+        @include mdg-container(true);    
+    }
 }

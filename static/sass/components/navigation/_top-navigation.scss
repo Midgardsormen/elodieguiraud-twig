@@ -1,0 +1,22 @@
+@import "node_modules/wp-midgardsormen/scss/modules/mdg-navigation/top-navigation";
+
+.mdg-top-navigation {
+	&__item{
+		@include media(size-l) {
+			a{
+				color: $bg-top-menu;
+				padding: $bu-025 $bu-050;
+				&:hover, &:active{
+					background-color: $bg-top-menu;
+					color: $color-top-menu;
+				}
+			}
+			&--current{
+				a{
+					background-color: $bg-top-menu;
+					color: $color-top-menu;
+				}
+			}
+		}
+	}
+}

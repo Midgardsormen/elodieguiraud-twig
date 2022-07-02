@@ -1,0 +1,39 @@
+<footer id="footer" class="mdg-footer">
+    <div class="mdg-container mdg-container--limited">
+        <div class="mdg-footer__container">
+            <div class="mdg-footer__site-infos">
+                {% if custom_logo_url %}
+                    <a class="hdr-logo-link mdg-footer__site-infos-logo" href="{{site.url}}" rel="home">
+                        <img class="mdg-footer__site-infos-logo-img" src="{{ custom_logo_url }}" alt="site logo">
+                        <span class="mdg-footer__site-infos-logo-name">{{site.name}}</span>
+                    </a>
+                {% else  %}
+                    <div class="mdg-footer__logo">
+                        {% if site.name  %}
+                            {% if function('is_front_page') and not (function('is_paged')) %}
+                                {{ site.name }}
+                            {% else  %}
+                                <a class="mdg-footer__name hdr-logo-link" href="{{site.url}}" rel="home">{{site.name}}</a>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                {% endif %}
+                <!-- .site-name -->
+            </div><!-- .site-info -->
+            <div class="mdg-footer__contact-infos">
+                <span class="mdg-footer__contact-infos-item">{{ function('do_shortcode', '[contact type="street_number_name"]') }}</span>
+                <span class="mdg-footer__contact-infos-item">{{ function('do_shortcode', '[contact type="postcode"]') }} {{ function('do_shortcode', '[contact type="location_name"]') }}</span>
+                <span class="mdg-footer__contact-infos-item"><span class="dashicons dashicons-phone">&nbsp;</span> {{ function('do_shortcode', '[contact type="phone_number"]') }}</span>
+                <span class="mdg-footer__contact-infos-item"><span class="dashicons dashicons-email">&nbsp;</span> {{ function('do_shortcode', '[contact type="email_address"]') }}</span>
+            </div>
+            <div class="mdg-footer__third-column">
+                {% if custom_side_bar %}
+                <div class="mdg-footer__social-menu">
+                    {{ custom_side_bar }}
+                </div>
+                {% endif %}
+                {% include "footer/footer-navigation.twig" %}
+            </div>
+        </div>
+    </div>
+</footer>

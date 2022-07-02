@@ -1,13 +1,19 @@
-<header class="header site-header" >
+<header class="header mdg-header" >
     {% block header %}
-        <div class="site-header__inner-layout base-container base-container--limited">
-            <h1 class="hdr-logo" role="banner">
-                <a class="hdr-logo-link" href="{{site.url}}" rel="home">{{site.name}}</a>
-            </h1>
+        <div class="mdg-header__layout">
+            <div class="mdg-header__topmenu-layout">
+                {% include "header/top-navigation.twig" %}  
+            </div>
+            <div class="mdg-header__logo-layout">
+                <a class="hdr-logo-link mdg-header__site-infos-logo" href="{{site.url}}" rel="home">
+                    <img class="mdg-header__site-infos-logo-img" src="{{ custom_logo_url }}" alt="site logo">
+                    <span class="mdg-header__site-infos-logo-name">{{site.name}}</span>
+                </a>
+
+            </div>
         </div>
-            
-        {% include "header/main-navigation.twig" %}
-
-
+        <div class="mdg-header__menu-layout">
+            {% include "header/main-navigation.twig" %}
+        </div>   
     {% endblock %}
 </header>

@@ -1,0 +1,19 @@
+&__site-infos{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: $bu-150;
+    @include media(size-l) {
+        margin-bottom: 0;
+    }
+    &-logo{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        &-img{
+            width: auto;
+            height: auto;
+            max-width: $bu-600;
+        }
+    }
+}

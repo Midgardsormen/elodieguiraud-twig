@@ -1,10 +1,8 @@
 {% import "/templates/macros/common/mdg-navigation/mdg-navigation.twig" as mainNavigation %}
 {% set menuConfig = {
-	"menuId": primary_menu,
-	"type":"main",
-	"display":"horizontal",
-    "allowChildren": true,
-    "rich": false
+	"menuId": footer_menu,
+	"type":"footer",
+    "allowChildren": false
 } %}
 
 {{ mainNavigation.mdg_navigation(menuConfig) }}
