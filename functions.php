@@ -190,10 +190,6 @@ new StarterSite();
  * Enqueue scripts and styles.
  */
 function custom_base_theme_scripts() {
-	wp_enqueue_style( 'custom-base-theme-style', get_stylesheet_uri(), array(), false );
-	wp_style_add_data( 'custom-base-theme-style', 'rtl', 'replace' );
-
-	wp_enqueue_script( 'custom-base-theme-navigation', get_template_directory_uri() . '/static/js/navigation.js', array(), false, true );
 	wp_enqueue_script( 'custom-base-theme-global', get_template_directory_uri() . '/static/js/global.js', array(), false, true );
 	add_filter('script_loader_tag', 'add_type_attribute' , 10, 3);
 }
@@ -232,7 +228,7 @@ function my_custom_sidebar() {
 add_action( 'widgets_init', 'my_custom_sidebar' );
 
 
-
+// contact form 7 custom tags : 
 add_action( 'wpcf7_init', 'wpcf7_add_form_tag_toggle' );
 function wpcf7_add_form_tag_toggle() {
 	// Add shortcode for the form [toggle]
