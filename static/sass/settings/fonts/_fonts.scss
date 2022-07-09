@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'photograph_signatureregular';
+    font-display: swap; /* Read next point */      
+    src:
+        url('static/fonts/photograph_signature-webfont.woff2') format('woff2'),
+        url('static/fonts/photograph_signature-webfont.woff') format('woff'),
+        url('static/fonts/photograph_signature-webfont.svg#photograph_signatureregular') format('svg'),
+        url('static/fonts/photograph_signature-webfont.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

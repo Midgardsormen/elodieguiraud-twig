@@ -46,7 +46,7 @@
   },
   "dependencies": {
     "npm-git-install": "^0.3.0",
-    "wp-midgardsormen": "^1.2.3",
+    "wp-midgardsormen": "^1.3.4",
     "fs-extra": "^10.1.0",
     "glob": "^8.0.3"
   }

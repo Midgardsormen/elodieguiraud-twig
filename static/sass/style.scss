@@ -49,9 +49,16 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 	- Alignments
 
 --------------------------------------------------------------*/
-
+body{
+	
+}
 // Import variables and mixins.
 @import "abstracts/abstracts";
+
+/*--------------------------------------------------------------
+# Settings
+--------------------------------------------------------------*/
+@import "settings/settings";
 
 /*--------------------------------------------------------------
 # Generic

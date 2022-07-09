@@ -1,7 +1,26 @@
 /* eslint-disable linebreak-style */
 import MdgNavigationMenu from '../../node_modules/wp-midgardsormen/js/modules/mdg-navigation/mdg-navigation';
+import Overlay from '../../node_modules/wp-midgardsormen/js/modules/mdg-overlay';
+import Drawer from '../../node_modules/wp-midgardsormen/js/modules/mdg-drawer';
 
 window.addEventListener( 'load', ( ) => {
+	new Overlay(); 
+
+	document.querySelectorAll('.js-drawer').forEach(btn =>{
+		const id = btn.dataset.drawer;
+		const drawer = new Drawer(id);
+		btn.addEventListener('click', (e) => {
+			drawer.open();
+		})
+	})
+	const editorButtons = document.querySelectorAll('.wp-block-button__link');
+	editorButtons.forEach((button)=>{
+		if (!button.href){
+			button.setAttribute('role','button');
+			button.setAttribute('tabindex','0');
+			button.setAttribute('aria-pressed','false');
+		}
+	})
 	Array.from(document.querySelectorAll('.mdg-toggle')).forEach((toggle, i) => {
 		
 		const toggleInput = toggle.querySelector('input');
@@ -13,39 +32,11 @@ window.addEventListener( 'load', ( ) => {
 
 	  }) 
 
-	const mdgOverlay = document.querySelector( '.mdg-overlay' );
-	const siteBody = document.querySelector( 'body' );
-	const activeOverlayButtons = document.querySelectorAll( '.js-active-overlay' );
-	activeOverlayButtons.forEach( ( e ) => {
-		e.addEventListener( 'click', () => {
-			if ( mdgOverlay ) {
-				mdgOverlay.classList.toggle( 'active' );
-				siteBody.classList.toggle( 'fixed' );
-			}
-		} );
-	} );
-	const removeOverlayButtons = document.querySelectorAll( '.js-remove-overlay' );
-	removeOverlayButtons.forEach( ( e ) => {
-		e.addEventListener( 'click', () => {
-			if ( mdgOverlay ) {
-				mdgOverlay.classList.remove( 'active' );
-				siteBody.classList.remove( 'fixed' );
-			}
-		} );
-	} );
-	mdgOverlay.addEventListener( 'click', ( e ) => {
-		e.target.classList.remove( 'active' );
-		siteBody.classList.remove( 'fixed' );
-		const allActiveElements = document.querySelectorAll( '.active' );
-		allActiveElements.forEach( ( elm ) => {
-			elm.classList.remove( 'active' );
-		} );
-	} );
+	
 
 	const mainMenuComponent = document.querySelectorAll( `[id^="mdg-component-main-navigation"]` );
 	
 	mainMenuComponent.forEach( ( menu ) => {
-		console.log('mainMenuComponent', menu)
 		const mainNavigation = new MdgNavigationMenu( menu );
 	} );
 

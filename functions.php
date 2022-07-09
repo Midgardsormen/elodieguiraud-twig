@@ -250,3 +250,11 @@ function wpcf7_current_url_form_tag_toggle_handler( $tag ) {
 					<span class="mdg-toggle__toggle">&nbsp;</span>'.$value.'</label>
 			</div>';
 }
+
+
+add_action('wp_head' , function(){
+    echo'
+    <link rel="preload" href="'.get_template_directory_uri().'/static/fonts/photograph_signature-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    ';
+});
+

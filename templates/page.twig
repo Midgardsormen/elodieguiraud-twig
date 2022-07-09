@@ -1,4 +1,55 @@
 {% extends "base.twig" %}
+{% import "macros/common/mdg-elements/mdg-button.twig" as button %}
+{% import "macros/common/mdg-drawer.twig" as drawer %}
+{% set buttonConfig = {
+	"id": "button_test",
+	"class":"top js-drawer",
+	"size":"m",
+	"level": "secondary",
+    "label": "ceci est un bouton",
+	"icon": {
+        "iconClass":"dashicons dashicons-calendar"
+    },
+    "otherAttributes" : {
+		"data-drawer" : "drawerId",
+        "target": "_blank",
+        "data-test" : "test"
+    }
+} %}
+{% set drawerConfig =  {
+    "title": "drawer title" ,
+	"id": "drawerId",
+	"class": "",
+    "role": "document",
+	"closeDrawerLabel" : "Fermer",
+    "actions" : {
+        "cta-1": {
+                "label": "Je confirme",
+                "type": "button",
+                "link" : "/",
+            	"id": "drawerbutton_test",
+	            "class": "string",
+                    "otherAttributes" : {
+                    "target": "_blank",
+                    "data-test" : "test"
+                }
+        },
+        "cta-2": {
+			"label": "Je refuse",
+			"type": "button",
+			"link" : "/",
+			"id": "drawerbutton_test2",
+			"class": "string",
+				"otherAttributes" : {
+				"target": "_blank",
+				"data-test" : "test",
+				"disabled" : "true"
+			}
+		}
+    }
+}
+%}
+
 
 {% block content %}
 	<div class="content-wrapper mdg-container mdg-container--limited">
@@ -6,9 +57,18 @@
 			<section class="article-content">
 				<h1 class="article-h1">{{post.title}}</h1>
 				<div class="article-body">
-					{{post.content}}
+					{{post.content}} 
+					<p>{{ button.mdg_button(buttonConfig) }}</p>
 				</div>
+				{% set drawerItemContent %}
+					<p>Ceci est un test</p>
+				{% endset %}
+				{% block drawerItemName %}
+				
+				{% endblock %}
+				<div>{{ drawer.mdg_drawer(drawerConfig, drawerItemContent) }}</div>
 			</section>
 		</article>
 	</div><!-- /content-wrapper -->
+	
 {% endblock %}

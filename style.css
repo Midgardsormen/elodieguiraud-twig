@@ -58,6 +58,18 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 }
 
 /*--------------------------------------------------------------
+# Settings
+--------------------------------------------------------------*/
+@font-face {
+	font-family: 'photograph_signatureregular';
+	font-display: swap;
+	/* Read next point */
+	src: url("static/fonts/photograph_signature-webfont.woff2") format("woff2"), url("static/fonts/photograph_signature-webfont.woff") format("woff"), url("static/fonts/photograph_signature-webfont.svg#photograph_signatureregular") format("svg"), url("static/fonts/photograph_signature-webfont.otf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+
+/*--------------------------------------------------------------
 # Generic
 --------------------------------------------------------------*/
 /*breakpoints
@@ -1607,34 +1619,141 @@ a:hover, a:active {
 
 /* Forms
 --------------------------------------------- */
-button,
-input[type="button"],
-input[type="reset"],
-input[type="submit"] {
+body button,
+body input[type="button"],
+body input[type="reset"],
+body input[type="submit"],
+body .mdg-button,
+body .wp-block-button__link {
 	border: 1px solid;
-	border-color: #ccc #ccc #bbb;
-	border-radius: 3px;
-	background: #e6e6e6;
-	color: #000000;
+	border-color: #5D4157;
+	border-radius: 5px;
+	background: #5D4157;
+	color: #ffffff;
 	line-height: 1;
-	padding: 0.6em 1em 0.4em;
+	padding: 0.5rem 1rem 0.75rem;
+	display: inline-flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 0.5rem;
+	font-size: 1rem;
+	line-height: 1.125;
+	cursor: pointer;
 }
 
-button:hover,
-input[type="button"]:hover,
-input[type="reset"]:hover,
-input[type="submit"]:hover {
-	border-color: #ccc #bbb #aaa;
+body button:hover, body button:active,
+body input[type="button"]:hover,
+body input[type="button"]:active,
+body input[type="reset"]:hover,
+body input[type="reset"]:active,
+body input[type="submit"]:hover,
+body input[type="submit"]:active,
+body .mdg-button:hover,
+body .mdg-button:active,
+body .wp-block-button__link:hover,
+body .wp-block-button__link:active {
+	border-color: #838689;
+	background: #838689;
+	color: #CAD7B2;
 }
 
-button:active, button:focus,
-input[type="button"]:active,
-input[type="button"]:focus,
-input[type="reset"]:active,
-input[type="reset"]:focus,
-input[type="submit"]:active,
-input[type="submit"]:focus {
-	border-color: #aaa #bbb #bbb;
+body .mdg-button--secondary {
+	border-color: #838689;
+	color: #CAD7B2;
+	background-color: #838689;
+}
+
+body .mdg-button--secondary.mdg-button--bordered {
+	border-color: #5D4157;
+	color: #ffffff;
+	background-color: #5D4157;
+}
+
+body .mdg-button--secondary.mdg-button--bordered:hover, body .mdg-button--secondary.mdg-button--bordered:active {
+	border-color: #5D4157;
+	background-color: #5D4157;
+	color: #ffffff;
+}
+
+body .mdg-button--xs {
+	padding: 0.125rem calc(0.125rem * 2) calc(0.125rem + 0.25rem);
+	gap: 0.25rem;
+	font-size: 0.75rem;
+	line-height: 1.125;
+}
+
+body .mdg-button .mdg-button__icon {
+	font-size: 0.75rem;
+	line-height: 1.125;
+}
+
+body .mdg-button--s {
+	padding: 0.25rem calc(0.25rem * 2) calc(0.25rem + 0.25rem);
+	gap: 0.25rem;
+	font-size: 0.875rem;
+	line-height: 1.125;
+}
+
+body .mdg-button .mdg-button__icon {
+	font-size: 0.875rem;
+	line-height: 1.125;
+}
+
+body .mdg-button--m {
+	padding: 0.5rem calc(0.5rem * 2) calc(0.5rem + 0.25rem);
+	gap: 0.5rem;
+	font-size: 1rem;
+	line-height: 1.125;
+}
+
+body .mdg-button .mdg-button__icon {
+	font-size: 1rem;
+	line-height: 1.125;
+}
+
+body .mdg-button--l {
+	padding: 0.5rem calc(0.5rem * 2) calc(0.5rem + 0.25rem);
+	gap: 0.5rem;
+	font-size: 1.125rem;
+	line-height: 1.125;
+}
+
+body .mdg-button .mdg-button__icon {
+	font-size: 1.125rem;
+	line-height: 1.125;
+}
+
+body .mdg-button--xl {
+	padding:  calc( * 2) calc( + 0.25rem);
+	gap: 0.5rem;
+	font-size: 1.25rem;
+	line-height: 1.125;
+}
+
+body .mdg-button .mdg-button__icon {
+	font-size: 1.25rem;
+	line-height: 1.125;
+}
+
+body .is-style-outline .wp-block-button__link,
+body .is-style-outline .wp-block-button__link:not(.has-background),
+body .is-style-outline .wp-block-button__link:not(.has-text-color),
+body .mdg-button--bordered {
+	border-color: #5D4157;
+	background-color: #ffffff;
+	color: #5D4157;
+}
+
+body .is-style-outline .wp-block-button__link:hover, body .is-style-outline .wp-block-button__link:active,
+body .is-style-outline .wp-block-button__link:not(.has-background):hover,
+body .is-style-outline .wp-block-button__link:not(.has-background):active,
+body .is-style-outline .wp-block-button__link:not(.has-text-color):hover,
+body .is-style-outline .wp-block-button__link:not(.has-text-color):active,
+body .mdg-button--bordered:hover,
+body .mdg-button--bordered:active {
+	border-color: #5D4157;
+	background-color: #5D4157;
+	color: #ffffff;
 }
 
 input[type="text"],
@@ -1860,6 +1979,160 @@ textarea {
 	cursor: not-allowed;
 }
 
+.mdg-drawer {
+	bottom: 0;
+	box-sizing: border-box;
+	display: flex;
+	font-weight: 400;
+	left: 0;
+	outline: 0;
+	overflow: hidden;
+	pointer-events: none;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 3;
+	justify-content: flex-end;
+}
+
+.mdg-drawer__container {
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	background: var(--color-grey-000, #fff);
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	height: 100%;
+	max-width: calc(100% - 2rem);
+	-webkit-transition: visibility 0s linear .4s,-webkit-transform .4s;
+	transition: visibility 0s linear .4s,-webkit-transform .4s;
+	transition: visibility 0s linear .4s,transform .4s;
+	transition: visibility 0s linear .4s,transform .4s,-webkit-transform .4s;
+	visibility: hidden;
+	width: 100%;
+	transform: translateX(100%);
+}
+
+@media only screen and (min-width: 480px) {
+	.mdg-drawer__container {
+		max-width: 25rem;
+	}
+}
+
+@media only screen and (min-width: 1024px) {
+	.mdg-drawer__container {
+		max-width: 27.5rem;
+	}
+}
+
+@media only screen and (min-width: 1280px) {
+	.mdg-drawer__container {
+		max-width: 30rem;
+	}
+}
+
+.mdg-drawer.active .mdg-drawer__container {
+	pointer-events: all;
+	-webkit-transform: translateX(0);
+	transform: translateX(0);
+	-webkit-transition: visibility 0s linear 0s,-webkit-transform .4s;
+	transition: visibility 0s linear 0s,-webkit-transform .4s;
+	transition: visibility 0s linear 0s,transform .4s;
+	transition: visibility 0s linear 0s,transform .4s,-webkit-transform .4s;
+	visibility: visible;
+}
+
+.mdg-drawer__header, .mdg-drawer__body, .mdg-drawer__footer {
+	padding: 1rem 1rem 0.5rem;
+}
+
+@media only screen and (min-width: 480px) {
+	.mdg-drawer__header, .mdg-drawer__body, .mdg-drawer__footer {
+		padding: 1.25rem 1.25rem 0.75rem;
+	}
+}
+
+@media only screen and (min-width: 1024px) {
+	.mdg-drawer__header, .mdg-drawer__body, .mdg-drawer__footer {
+		padding: 1.5rem 1.5rem 1rem;
+	}
+}
+
+@media only screen and (min-width: 1280px) {
+	.mdg-drawer__header, .mdg-drawer__body, .mdg-drawer__footer {
+		padding: 2rem 2rem 1.25rem;
+	}
+}
+
+.mdg-drawer__header {
+	align-items: center;
+	display: flex;
+	min-height: 4rem;
+	position: relative;
+}
+
+.mdg-drawer__title {
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.2857142857;
+	margin-bottom: 0;
+	margin-top: 0;
+}
+
+.mdg-drawer__close {
+	-ms-flex-item-align: start;
+	align-self: flex-start;
+	background-size: contain;
+	border: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	cursor: pointer;
+	height: 2rem;
+	margin: 0 0 0 auto;
+	outline: none;
+	padding: 0;
+	position: relative;
+	text-decoration: none;
+	width: 2rem;
+	justify-content: center;
+}
+
+.mdg-drawer__close-text {
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	visibility: visible;
+	white-space: nowrap;
+	width: 1px;
+}
+
+.mdg-drawer__body {
+	flex: 1 1;
+	overflow: hidden;
+}
+
+.mdg-drawer__content {
+	max-height: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+	padding: 1.5rem 0.5rem 3rem;
+	scrollbar-color: #6f676c #eeeef0;
+	scrollbar-width: thin;
+}
+
+.mdg-drawer__footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1.5rem;
+}
+
 /*--------------------------------------------------------------
 # Layouts
 --------------------------------------------------------------*/
@@ -1957,8 +2230,11 @@ textarea {
 }
 
 .mdg-header__logo-layout .mdg-header__site-infos-logo-name {
+	font-family: "photograph_signatureregular", cursive;
+	color: #ffffff;
 	font-size: 1.25rem;
 	line-height: 1.125;
+	font-size: 2rem;
 }
 
 @media only screen and (min-width: 1024px) {
