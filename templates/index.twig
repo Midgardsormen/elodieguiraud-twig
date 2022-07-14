@@ -1,11 +1,16 @@
 {% extends "base.twig" %}
 
 {% block content %}
-	<h2>{{ foo }}</h2>
-	<p>{{ qux }}</p>
-	{% for post in posts %}
-		{% include ['tease-'~post.post_type~'.twig', 'tease.twig'] %}
-	{% endfor %}
-	
+<section class="mdg-section">
+	<div class="mdg-base-list mdg-container mdg-container--limited">
+		<ul class="mdg-base-list__container">
+			{% for post in posts %}
+				<li class="mdg-base-list__item post_{{post.id}}">
+					{% include ['tease-'~post.post_type~'.twig', 'tease.twig'] %}
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
 	{% include 'partial/pagination.twig' with { pagination: posts.pagination({show_all: false, mid_size: 3, end_size: 2}) } %}
+</section>
 {% endblock %}

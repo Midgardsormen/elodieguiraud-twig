@@ -1,26 +1,50 @@
 {% extends "base.twig" %}
+{% import "macros/common/mdg-elements/mdg-image.twig" as picture %}
 
 {% block content %}
-	<div class="content-wrapper">
+	<div class="content-wrapper  mdg-container mdg-container--limited">
 		<article class="post-type-{{ post.post_type }}" id="post-{{ post.ID }}">
-			<img src="{{ post.thumbnail.src|resize(1200, 300) }}">
-			<section class="article-content">
-				<h1 class="article-h1">{{ post.title }}</h1>
+			<section class="article-content post-content">
+				<h1 class="article-h1 post-title">{{ post.title }}</h1>
 				<a href="{{ post.link }}">{{ _e('edit') }}</a>
-				<p class="blog-author">
-					<span>By</span><a href="{{post.author.path}}"> {{ post.author.name }} </a><span>&bull;</span> <time datetime="{{ post.date|date('Y-m-d H:i:s') }}">{{ post.date }}</time>
-				</p>
-				<div class="article-body">
-					{{post.content}}
+				<div class="post-content__content-wrapper">
+					{% if post.thumbnail %}
+						<div class="post-content__featured-image">
+							{{ picture.mdg_picture({
+								"src": post.thumbnail.src,
+								"alt": post.thumbnail.alt,
+								"sizes" : {
+									"xs": post.thumbnail.src|resize(320, 250),					
+									"s": post.thumbnail.src|resize(360, 280),					
+									"m": post.thumbnail.src|resize(480, 300),					
+									"l": post.thumbnail.src|resize(300, 600),					
+									"xl": post.thumbnail.src|resize(300, 600),					
+									"xxl": post.thumbnail.src|resize(450, 600)					
+							}}, mdg_breakpoints) }}
+						</div>
+					{% endif %}
+					<p class="post-content__date">Le <time datetime="{{ post.date|date('Y-m-d H:i:s') }}">{{ post.date }}</time></p>
+					<div class="article-body post-content__content">
+						{{post.content}}
+					</div>
 				</div>
-			</section>
+			</section>	
+			
+			{% for term in post.terms('le-blog') %}
+			<h3>Related Posts in {{ term.name }}</h3>
+			<ul>
+				{% for child_post in term.posts(4) %}
+				<li><a href="{{ child_post.link }}">{{ child_post.title }}</a></li>
+				{% endfor %}
+			</ul>
+		{% endfor %}
 
 			<!-- comment box -->
 			<section class="comment-box">
 				<!-- comments -->
 				<div class="comments">
 				    {% if post.comments %}
-					<h3> comments </h3>
+					<h3> Commentaires </h3>
 					{% for cmt in post.comments %}
 					    {% include "comment.twig" with {comment:cmt} %}
 					{% endfor %}
@@ -28,7 +52,7 @@
 				</div>
 
 				{% if post.comment_status == "closed" %}
-					<p> comments for this post are closed </p>
+					<p> Les commentaires pour cet article sont fermés </p>
 				{% else %}
 				    <!-- comment form -->
 				    {% include "comment-form.twig" %}

@@ -95,6 +95,19 @@ class StarterSite extends Timber\Site {
 		$context['top_menu'] = new Timber\Menu('top-menu');
 		$context['footer_menu'] = new Timber\Menu('footer-menu');
 		$context['site']  = $this;
+		$context['test'] = function( $id ) {
+			return new Timber\Term($id);
+		};
+		$context['st_louis']['proout'] = new Timber\Term(9);
+		$context['category'] = new \Timber\Term(get_queried_object());
+		$context['mdg_breakpoints'] = array(
+			"xs" => 320,					
+			"s"=> 360,					
+			"m" => 480,					
+			"l" => 1024,					
+			"xl" => 1280,					
+			"xxl" => 1640
+		);
 		return $context;
 	}
 
@@ -161,6 +174,14 @@ class StarterSite extends Timber\Site {
 		return $text;
 	}
 
+	/** init new Tmber\Term by Id, to get all ACF fields'.
+	 *
+	 * @param number $id category Id'.
+	 */
+	public static function get_timber_term_by_Id($id) {
+        return new Timber\Term($id);
+    }
+	
 	/** This is where you can add your own functions to twig.
 	 *
 	 * @param string $twig get extension.
@@ -168,6 +189,10 @@ class StarterSite extends Timber\Site {
 	public function add_to_twig( $twig ) {
 		$twig->addExtension( new Twig\Extension\StringLoaderExtension() );
 		$twig->addFilter( new Twig\TwigFilter( 'myfoo', array( $this, 'myfoo' ) ) );
+		$twig->addFunction( new Timber\Twig_Function(
+			'get_timber_term_by_Id',
+			array( $this, 'get_timber_term_by_Id' )
+		) );
 		return $twig;
 	}
 
@@ -257,4 +282,6 @@ add_action('wp_head' , function(){
     <link rel="preload" href="'.get_template_directory_uri().'/static/fonts/photograph_signature-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous">
     ';
 });
+
+
 
