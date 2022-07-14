@@ -2,8 +2,66 @@
    just a small part. See `search.twig` for an example of another approach #}
 
 {% extends "index.twig" %}
+{% import "macros/common/mdg-elements/mdg-image.twig" as picture %}
+{% import "macros/common/mdg-base-list-item.twig" as base_list_item %}
 
-{% block content %}
-  <h3>This is my archive</h3>
-  {{ parent() }}
+{% block top_section %}
+  {% set currentCategory = function('get_query_var', 'cat') %}
+  {% set currentCategoryDescription = category.meta('texte_de_presentation_de_la_categorie_pour_la_page_daccueil_du_blog', 'category_'.currentCategory) %}
+  {% set currentCategoryImgObject = category.meta('category_image', 'category_'.currentCategory) %}
+  <section class="mdg-section mdg-section__top mdg-section--background" 
+  style="
+  --mdg-section-bg-xs: url('{{ currentCategoryImgObject.url|resize(360, 480) }}'); 
+  --mdg-section-bg-s: url('{{ currentCategoryImgObject.url|resize(480, 480) }}'); 
+  --mdg-section-bg-m: url('{{ currentCategoryImgObject.url|resize(1024, 1024) }}');
+   --mdg-section-bg-l: url('{{ currentCategoryImgObject.url|resize(1280, 1024) }}');
+    --mdg-section-bg-xl: url('{{ currentCategoryImgObject.url|resize(1640, 1024) }}');
+     --mdg-section-bg-xxl: url('{{ currentCategoryImgObject.url|resize(1980, 1024) }}')">
+    <div class="mdg-container mdg-container--limited">
+      <div class="mdg-section__content">
+        {% if title %}<h1>{{title}}</h1>{% endif %}
+        {{ currentCategoryDescription|default('') }}
+      </div>
+    </div>
+  </section>
+
 {% endblock %}
+{% block content %}
+  {% set currentCategory = function('get_query_var', 'cat') %}
+  {% set childrenCategoriesId = function('get_term_children', currentCategory, 'category') %}
+  {% if childrenCategoriesId %}
+  <section class="mdg-section">
+    
+    <div class="archive mdg-base-list mdg-container mdg-container--limited">
+      <h2>Les catégories</h2>
+      <ul class="mdg-base-list__container">
+        {% for catId in childrenCategoriesId %}
+
+          {% set catObject = function(['StarterSite', 'get_timber_term_by_Id'], catId) %}
+          {% set catObjectImgObject = catObject.meta('category_image', 'category_'.catId) %}
+          {% set catObjectDescription = category.meta('texte_de_presentation_de_la_categorie_pour_la_page_daccueil_du_blog', 'category_'.catId) %}
+          
+          <li class="mdg-base-list__item category_{{catId}}' ?>">
+            {{ base_list_item.mdg_base_list_item({
+                "url":  function('get_category_link', catId) ,
+                "title": catObject.name,
+                "titleTag":"h3",
+                "description": catObjectDescription,
+                "img" : {
+                  "src": catObjectImgObject.url,					
+                  "alt": catObjectImgObject.alt
+                }
+              }) 
+            }}
+          </li>
+        {% endfor %}
+      </ul>    
+    </div>
+  </section>
+  {% else %}
+    {{ parent() }}
+  {% endif %}
+
+{% endblock %}
+
+

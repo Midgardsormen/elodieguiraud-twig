@@ -12,7 +12,9 @@
 		
 		
 		<section id="content" role="main" class="content-wrapper">
-			{% if title %}<h1>{{title}}</h1>{% endif %}
+			{% block top_section %}
+				{% if title %}<h1>{{title}}</h1>{% endif %}
+			{% endblock %}
 			<div class="wrapper {{sidebar_class}}">
 				{% block content %}
 				Sorry, no content

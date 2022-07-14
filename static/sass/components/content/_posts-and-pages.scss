@@ -1,3 +1,7 @@
+@import './post';
+@import "node_modules/wp-midgardsormen/scss/layout/mdg_base_list";
+@import "node_modules/wp-midgardsormen/scss/base/elements/mdg-base-list-item";
+
 .sticky {
 	display: block;
 }

@@ -1,0 +1,39 @@
+.post-content{
+	padding-bottom: $bu-150;
+	&__featured-image{
+		display: block;
+		margin-bottom: $bu-150;
+		@include media(size-m) {
+			float: left;
+			margin-right: $bu-150;
+		}
+		@include media(size-l) {
+			float: left;
+			margin-right: $bu-200;
+		}
+	}
+	&__date{
+		margin-bottom: $bu-150;
+		color: $mdg-color-1;
+	}
+    &__content{
+        .wp-block-image{
+            figure{
+              max-width: 30%;  
+              margin-bottom: $bu-150;
+              &.alignright{
+                margin-left: $bu-150;
+              }
+              &.alignleft{
+                margin-right: $bu-150;
+              }
+              @include media(size-l) {
+                max-width: 20%;
+              }
+              @include media(size-xl) {
+                max-width: 25%;
+              }
+            }
+        }
+    }
+}
